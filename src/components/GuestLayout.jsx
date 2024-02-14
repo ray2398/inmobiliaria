@@ -5,9 +5,9 @@ import { useAuth } from '../contexts/AuthContext';
 export default function GuestLayout() {
 	const { user } = useAuth();
 
-	// if user is logged in, redirect to profile page
+	// Si el usuario ha iniciado sesión, redirija a la página de perfil
 	if (user) {
-		return <Navigate to="/profile" />;
+		return <Navigate to="/home" />;
 	}
 	return (
 		<>

@@ -4,6 +4,8 @@ import Profile from './pages/Profile';
 import Register from './pages/Register';
 import ProtectedLayout from './components/ProtectedLayout';
 import GuestLayout from './components/GuestLayout';
+import Home from './pages/Home';
+// import Profile from './pages/Profile';
 
 const router = createBrowserRouter([
 	{
@@ -25,9 +27,17 @@ const router = createBrowserRouter([
 		element: <ProtectedLayout />,
 		children: [
 			{
+				path: '/home',
+				element: <Home />,
+			},
+			{
 				path: '/profile',
 				element: <Profile />,
 			},
+			// {
+			// 	path: '/admin',
+			// 	element: <Profile />,
+			// },
 		],
 	},
 ]);

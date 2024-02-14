@@ -10,7 +10,7 @@ export default function Login() {
 	const [emailError, setEmailError] = React.useState('');
 	const [passwordError, setPasswordError] = React.useState('');
 
-	// login user
+	// Inicio de Sesión
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const { email, password } = e.target.elements;
@@ -23,7 +23,7 @@ export default function Login() {
 			const resp = await axios.post('/login', body);
 			if (resp.status === 200) {
 				setUser(resp.data.user);
-				return <Navigate to="/profile" />;
+				return <Navigate to="/home" />;
 			}
 		} catch (error) {
 			if (error.response.status === 422) {

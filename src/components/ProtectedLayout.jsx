@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import axios from '../axios';
@@ -7,24 +7,7 @@ import { useAuth } from '../contexts/AuthContext';
 export default function DefaultLayout() {
 	const { user, setUser } = useAuth();
 
-	// check if user is logged in or not from server
-	useEffect(() => {
-		(async () => {
-			try {
-				const resp = await axios.get('/user');
-				if (resp.status === 200) {
-					setUser(resp.data.data);
-				}
-			} catch (error) {
-				if (error.response.status === 401) {
-					localStorage.removeItem('user');
-					window.location.href = '/';
-				}
-			}
-		})();
-	}, []);
-
-	// if user is not logged in, redirect to login page
+	// Si el usuario no ha iniciado sesión, redirija a la página de inicio de sesión
 	if (!user) {
 		return <Navigate to="/" />;
 	}
@@ -47,12 +30,12 @@ export default function DefaultLayout() {
 				<div className="container flex flex-wrap items-center justify-between mx-auto">
 					<a href="https://dcodemania.com/" className="flex items-center">
 						<img
-							src="https://dcodemania.com/img/logo.svg"
+							src="https://images.vexels.com/media/users/3/127081/isolated/preview/cd0b81a1b9e0bbca6951210691403ebe-flecha-casas-icono-de-bienes-raices.png"
 							className="h-6 mr-3 sm:h-9"
 							alt="DCodeMania Logo"
 						/>
 						<span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-							DCodeMania
+							Inmobiliaria
 						</span>
 					</a>
 					<button
@@ -78,6 +61,17 @@ export default function DefaultLayout() {
 						<ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
 							<li>
 								<NavLink
+									to="/home"
+									className={({ isActive }) =>
+										isActive
+											? 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white'
+											: 'block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white'
+									}>
+									Inicio
+								</NavLink>
+							</li>
+							<li>
+								<NavLink
 									to="/profile"
 									className={({ isActive }) =>
 										isActive
@@ -87,7 +81,7 @@ export default function DefaultLayout() {
 									Profile
 								</NavLink>
 							</li>
-							<li>
+							{/* <li>
 								<NavLink
 									to="/about"
 									className={({ isActive }) =>
@@ -95,9 +89,9 @@ export default function DefaultLayout() {
 											? 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white'
 											: 'block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white'
 									}>
-									About
+									Administración de Inmuebles
 								</NavLink>
-							</li>
+							</li> */}
 
 							<li>
 								<a

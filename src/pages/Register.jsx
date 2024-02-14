@@ -9,7 +9,7 @@ export default function Register() {
 	const [emailError, setEmailError] = React.useState('');
 	const [passwordError, setPasswordError] = React.useState('');
 	const [telefonoError, setTelefonoError] = React.useState('');
-	// register user
+	// Registro de Usuario
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const { name, email, password, cpassword, telefono } = e.target.elements;
@@ -24,7 +24,7 @@ export default function Register() {
 			const resp = await axios.post('/register', body);
 			if (resp.status === 200) {
 				setUser(resp.data.user);
-				return <Navigate to="/profile" />;
+				return <Navigate to="/home" />;
 			}
 		} catch (error) {
 			if (error.response.status === 422) {
