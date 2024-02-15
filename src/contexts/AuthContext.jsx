@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
 
 	// csrf token
 	const csrfToken = async () => {
-		await axios.get('https://inmobiliariabackend.developocc.com/sanctum/csrf-cookie');
+		await axios.get('http://localhost/sanctum/csrf-cookie');
 		return true;
 	};
 
