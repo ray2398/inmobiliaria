@@ -7,6 +7,8 @@ import GuestLayout from './components/GuestLayout';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
 import Admin from './pages/Admin';
+import Add from './pages/Add';
+import Edit from './pages/Edit';
 // import Profile from './pages/Profile';
 
 const router = createBrowserRouter([
@@ -43,6 +45,18 @@ const router = createBrowserRouter([
 			{
 				path: '/admin',
 				element: <Admin />,
+			},
+			{
+				path: '/admin',
+				element: <Admin />,
+			},
+			{
+				path: '/add',
+				element: <Add />,
+			},
+			{
+				path: '/edit/:id',
+				element: <Edit />,
 			},
 			// {
 			// 	path: '/admin',

@@ -81,7 +81,7 @@ export default function DefaultLayout() {
 									Administración de Inmuebles
 								</NavLink>
 							</li>
-							<li>
+							{/* <li>
 								<NavLink
 									to="/profile"
 									className={({ isActive }) =>
@@ -91,7 +91,7 @@ export default function DefaultLayout() {
 									}>
 									Profile
 								</NavLink>
-							</li>
+							</li> */}
 							<li>
 								<a
 									onClick={handleLogout}
