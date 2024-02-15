@@ -28,11 +28,11 @@ export default function DefaultLayout() {
 		<>
 			<nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
 				<div className="container flex flex-wrap items-center justify-between mx-auto">
-					<a href="https://dcodemania.com/" className="flex items-center">
+					<a href="/" className="flex items-center">
 						<img
 							src="https://images.vexels.com/media/users/3/127081/isolated/preview/cd0b81a1b9e0bbca6951210691403ebe-flecha-casas-icono-de-bienes-raices.png"
 							className="h-6 mr-3 sm:h-9"
-							alt="DCodeMania Logo"
+							alt="Logo"
 						/>
 						<span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
 							Inmobiliaria
@@ -72,6 +72,17 @@ export default function DefaultLayout() {
 							</li>
 							<li>
 								<NavLink
+									to="/admin"
+									className={({ isActive }) =>
+										isActive
+											? 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white'
+											: 'block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white'
+									}>
+									Administración de Inmuebles
+								</NavLink>
+							</li>
+							<li>
+								<NavLink
 									to="/profile"
 									className={({ isActive }) =>
 										isActive
@@ -81,18 +92,6 @@ export default function DefaultLayout() {
 									Profile
 								</NavLink>
 							</li>
-							{/* <li>
-								<NavLink
-									to="/about"
-									className={({ isActive }) =>
-										isActive
-											? 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white'
-											: 'block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white'
-									}>
-									Administración de Inmuebles
-								</NavLink>
-							</li> */}
-
 							<li>
 								<a
 									onClick={handleLogout}

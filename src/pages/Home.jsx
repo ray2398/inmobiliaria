@@ -1,5 +1,6 @@
 import React, { useEffect, useState  } from 'react';
 import axios from '../axios';
+import { NavLink } from 'react-router-dom';
 
 export default function Home() {
 
@@ -36,6 +37,24 @@ export default function Home() {
 		}
 	}
 
+	const descargarPdf = async (id) => {
+		try {
+			const resp = await axios.get(`/inmuebles/pdf/${id}`, {responseType: 'blob'});
+			if (resp.status === 200) {
+				const url = window.URL.createObjectURL(new Blob([resp.data]));
+				const link = document.createElement('a');
+				link.href = url;
+				link.setAttribute('download', 'Inmueble.pdf'); //or any other extension
+				document.body.appendChild(link);
+				link.click();
+			}
+		} catch (error) {
+			if (error.response.status === 500) {
+				console.log("Error")
+			}
+		}
+    }
+
 	const { activePage, nextPage, previousPage, totalPages, items } = usePagination(products);
 	
 	return (
@@ -47,8 +66,13 @@ export default function Home() {
 				products.length > 0 && (
 					items.map((row, key)=>(
 						<div className="block p-10 bg-white border border-gray-200 shadow-xl rounded-lg shadowdark:border-gray-700" key={key}>
-							<img className="h-auto max-w-xs" src={row.imagen} alt="image Inmueble"></img>
-							{row.nombre}
+							<button onClick={()=>descargarPdf(row.id)} className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+								Descargar Información
+							</button>
+							<NavLink to={`/detail/${row.id}`}>
+								<img className="h-auto max-w-full" src={row.imagen} alt="image Inmueble"></img>
+								{row.nombre}
+							</NavLink>
 						</div>
 					))
 				)
